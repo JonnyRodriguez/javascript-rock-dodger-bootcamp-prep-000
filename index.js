@@ -2,6 +2,11 @@
  * Don't change these constants!
  */
 const DODGER = document.getElementById('dodger');
+<<<<<<< HEAD
+=======
+const DODGER_WIDTH = parseInt(DODGER.offsetWidth);
+const DODGER_STEP = 4;
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
 const GAME = document.getElementById('game');
 const GAME_HEIGHT = 400;
 const GAME_WIDTH = 400;
@@ -21,8 +26,11 @@ function checkCollision(rock) {
   // implement me!
   // use the comments below to guide you!
   const top = positionToInteger(rock.style.top);
+<<<<<<< HEAD
   const dodgerWidth = 40; //parseInt(DODGER.offsetWidth);
   const rockWidth = 20; //parseInt(rock.offsetWidth);
+=======
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
 
   // rocks are 20px high
   // DODGER is 20px high
@@ -31,13 +39,33 @@ function checkCollision(rock) {
     const dodgerLeftEdge = positionToInteger(DODGER.style.left);
 
     // FIXME: The DODGER is 40 pixels wide -- how do we get the right edge?
+<<<<<<< HEAD
     const dodgerRightEdge = dodgerLeftEdge+dodgerWidth;
 
     const rockLeftEdge = positionToInteger(rock.style.left);
+=======
+    const dodgerRightEdge = dodgerLeftEdge+DODGER_WIDTH;
+
+    const rockLeftEdge = positionToInteger(rock.style.left);
+    const rockWidth = parseInt(rock.offsetWidth);
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
 
     // FIXME: The rock is 20 pixel's wide -- how do we get the right edge?
     const rockRightEdge = rockLeftEdge+rockWidth;
 
+<<<<<<< HEAD
+=======
+              /**
+               * Think about it -- what's happening here?
+               * There's been a collision if one of three things is true:
+               * 1. The rock's left edge is < the DODGER's left edge,
+               *    and the rock's right edge is > the DODGER's left edge;
+               * 2. The rock's left edge is > the DODGER's left edge,
+               *    and the rock's right edge is < the DODGER's right edge;
+               * 3. The rock's left edge is < the DODGER's right edge,
+               *    and the rock's right edge is > the DODGER's right edge
+               */
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
     if( rockLeftEdge < dodgerRightEdge && rockRightEdge > dodgerLeftEdge ) return true;
     if( rockRightEdge > dodgerLeftEdge && rockLeftEdge < dodgerRightEdge ) return true;
     return false;
@@ -86,7 +114,11 @@ function createRock(x) {
     if (top < 380) {
       window.requestAnimationFrame(moveRock);
     } else {
+<<<<<<< HEAD
       ROCKS.shift().remove();
+=======
+      GAME.removeChild(ROCKS.shift());
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
     }
 
     /**
@@ -114,7 +146,11 @@ function createRock(x) {
  */
 function endGame() {
   clearInterval(gameInterval);
+<<<<<<< HEAD
   ROCKS.forEach(rock => rock.remove() );
+=======
+  ROCKS.forEach(rock => GAME.removeChild(rock) );
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
   window.removeEventListener('keydown', moveDodger);
   alert("YOU LOSE!");
 }
@@ -129,6 +165,7 @@ function moveDodger(e) {
    * And be sure to use the functions declared below!
    */
   if(e.which==LEFT_ARROW) {
+<<<<<<< HEAD
     e.preventDefault();
     e.stopPropagation();
     moveDodgerLeft();
@@ -138,6 +175,12 @@ function moveDodger(e) {
     e.stopPropagation();
     moveDodgerRight();
   }
+=======
+    e.stopPropagation()
+    moveDodgerLeft();
+  }
+   if(e.which==RIGHT_ARROW) moveDodgerRight();
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
 }
 
 function moveDodgerLeft() {
@@ -147,7 +190,11 @@ function moveDodgerLeft() {
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
    var pos = positionToInteger(DODGER.style.left);
+<<<<<<< HEAD
    pos-=4;
+=======
+   pos-=DODGER_STEP;
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
    if(pos<0) pos=0;
    DODGER.style.left = pos+'px';
 }
@@ -159,7 +206,11 @@ function moveDodgerRight() {
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
   var pos = positionToInteger(DODGER.style.left);
+<<<<<<< HEAD
   pos+=4;
+=======
+  pos+=DODGER_STEP;
+>>>>>>> d56d96a2fb33602e5fc7b5e9115b10c61b60c83f
   if(pos>360) pos=360;
   DODGER.style.left = pos+'px';
 }
